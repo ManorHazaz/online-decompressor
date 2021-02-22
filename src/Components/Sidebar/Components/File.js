@@ -50,8 +50,6 @@ function File({ file })
         <div className='file' >
             <span className='logo'> <img src={ getFileLogo( file.type ) } /> </span>
             <span className='name'> { file.name } </span>
-            <span className='download' onClick={ () => window.createDownloadLink( file, '.link') }> download </span>
-            <span className='link'></span>
         </div>
     )
 }

@@ -51,3 +51,8 @@ body
     padding: 2rem;
 	overflow: auto;
 }
+
+.hidden
+{
+	display: none;
+}

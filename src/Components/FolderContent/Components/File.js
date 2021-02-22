@@ -47,12 +47,13 @@ function File({ file })
     }
 
     return (
-        <div className='file' >
+        <>
+        <div className='file' onClick={ () => window.createDownloadLink( file, '.link') }>
             <span className='logo'> <img src={ getFileLogo( file.type ) } /> </span>
             <span className='name'> { file.name } </span>
-            <span className='download' onClick={ () => window.createDownloadLink( file, '.link') }> download </span>
-            <span className='link'></span>
         </div>
+        <span className='link hidden'></span>
+        </>
     )
 }
 
