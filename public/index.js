@@ -8,6 +8,9 @@ function __( selector )
     return document.querySelectorAll( selector );
 }
 
+const zip = new JSZip();
+const regex = RegExp('[^.]*$');
+
 function findFolder( currentFolder, folderName )
 {
 	let folder = false
@@ -22,3 +25,66 @@ function findFolder( currentFolder, folderName )
 	});
 	return folder;
 }
+
+function decompressFileToArray( file )
+{	
+	const dir = [
+		{ name: 'zipName', type: 'folder', children: [] }
+	];
+
+	JSZip.loadAsync( file )
+	.then(( zip ) => 
+	{
+		// go over all the files in the zip
+		for (const [key, value] of Object.entries(zip.files)) 
+		{
+			console.log( value )
+			// split name of file to find folders
+			const words = key.split('/');
+
+			// reset folder array helper
+			let currentFolder = dir[0];
+
+			words.forEach( ( e ) => 
+			{
+				if( e === '' )
+				{
+					return;
+				}
+				if( value.dir )
+				{
+					// file type is folder
+					if( findFolder( currentFolder.children, e ) !== false )
+					{
+						// get inside folder
+						currentFolder = findFolder( currentFolder.children, e );
+					}
+					else
+					{
+						// create folder
+						const newFolder = { name: e, type: 'folder', children: [] }
+						currentFolder.children.push( newFolder );
+					}
+				}
+				else
+				{
+					// file type is not folder
+					if( e === words[ words.length - 1 ] )
+					{
+						// last substring of name
+						const file = { name: words[words.length-1], type: regex.exec(e)[0], content: value };
+						currentFolder.children.push( file );
+					}
+					else
+					{
+						// folder name
+						currentFolder = findFolder( currentFolder.children, e );
+					}
+				}
+			});
+		}
+	})
+
+	return dir;
+};
+
