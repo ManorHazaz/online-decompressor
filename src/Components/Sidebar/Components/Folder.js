@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import File from './File'
 
-import folderLogo from '../Static/folder.svg'
+import folderLogo from '../../../Static/folder.svg'
 
 function Folder({ directory }) 
 {

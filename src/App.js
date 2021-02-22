@@ -1,15 +1,17 @@
+import './App.css';
+
+import store from './Redux/store';
+
+import { Sidebar } from './Components/Sidebar';
+
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import withStore from './HOCs/withStore';
 
-import { useEffect, useRef, useState } from 'react';
-import './App.css';
-import Folder from './Components/Folder';
-import File from './Components/File';
-import store from './Redux/store';
-import { useSelector } from 'react-redux';
 
 function App() 
 {
-	const directory =  useSelector( state => state.directory );
+
 	const activeDirectory = useSelector( state => state.activeDirectory );
 
 	const inputRef = useRef();
@@ -32,6 +34,7 @@ function App()
 			</div>
 
 			<div className='container'>
+				<Sidebar />
 			{ 	directory.length != 0
 				? directory.map(( file ) =>
 				(

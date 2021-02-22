@@ -1,12 +1,12 @@
 import React from 'react'
 
-import fileText from '../Static/text.svg';
-import fileImage from '../Static/picture.svg';
-import fileDll from '../Static/dll.svg';
-import fileCss from '../Static/css.svg';
-import fileJs from '../Static/js.svg';
-import fileHtml from '../Static/html.svg';
-import fileDefault from '../Static/default.svg'
+import fileText from '../../../Static/text.svg';
+import fileImage from '../../../Static/picture.svg';
+import fileDll from '../../../Static/dll.svg';
+import fileCss from '../../../Static/css.svg';
+import fileJs from '../../../Static/js.svg';
+import fileHtml from '../../../Static/html.svg';
+import fileDefault from '../../../Static/default.svg'
 
 function File({ file }) 
 {
