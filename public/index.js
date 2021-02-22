@@ -38,7 +38,6 @@ function decompressFileToArray( file )
 		// go over all the files in the zip
 		for (const [key, value] of Object.entries(zip.files)) 
 		{
-			console.log( value )
 			// split name of file to find folders
 			const words = key.split('/');
 
