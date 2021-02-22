@@ -1,0 +1,19 @@
+.folder-content
+{
+    width: 70%;
+	display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2vmin;
+}
+
+.folder-content .folder, .folder-content .file
+{
+	width: 100%;
+	align-items: center;
+}
+
+.folder-content .folder .logo img, .folder-content .file .logo img
+{
+	width: 100%;
+	align-items: center;
+}

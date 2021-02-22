@@ -3,17 +3,14 @@ import './App.css';
 import store from './Redux/store';
 
 import { Sidebar } from './Components/Sidebar';
+import { FolderContent } from './Components/FolderContent';
 
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
 import withStore from './HOCs/withStore';
 
 
 function App() 
 {
-
-	const activeDirectory = useSelector( state => state.activeDirectory );
-
 	const inputRef = useRef();
 
 	function decompressFile() 
@@ -35,17 +32,7 @@ function App()
 
 			<div className='container'>
 				<Sidebar />
-			{ 	directory.length != 0
-				? directory.map(( file ) =>
-				(
-					file.type === 'folder'
-					? <Folder key={ file.type + '-' + file.name } directory={ file } />
-					: <File key={ file.type + '-' + file.name } file={ file } />
-				))
-				: <div className='welcome-msg'>
-					<h2> Selcet Zip file to decompress </h2>
-				</div>
-			}
+				<FolderContent />
 			</div>
 		
 		</div>

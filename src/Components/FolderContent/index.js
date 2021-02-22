@@ -1,0 +1,1 @@
+export { default as FolderContent } from './FolderContent';
