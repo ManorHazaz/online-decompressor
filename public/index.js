@@ -88,3 +88,21 @@ function decompressFileToArray( file )
 	return dir;
 };
 
+function createDownloadLink( file, appendTo )
+{
+	const fileArray =  file.content._data.compressedContent;
+	console.log( fileArray )
+	var byteArray = new Uint8Array( fileArray );
+	var a = window.document.createElement('a');
+
+	a.href = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));
+	a.download = file.name;
+
+	// Append anchor to body.
+	_( appendTo ).appendChild(a)
+	a.click();
+
+
+	// // Remove anchor from body
+	_( appendTo ).removeChild(a)
+}
