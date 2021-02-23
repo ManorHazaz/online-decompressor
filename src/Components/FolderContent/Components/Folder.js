@@ -1,10 +1,10 @@
-import folderLogo from '../../../Static/folder.svg';
-import zipLogo from '../../../Static/zip.svg';
-
 import store from '../../../Redux/store';
+import useGetIcon from '../../../Hooks/useGetIcon';
 
 function Folder({ directory }) 
 {
+    const getFileLogo  = useGetIcon( directory.type );
+
     function changeActiveDirectory( directory ) 
     {
         store.dispatch({ type: 'setActiveDirectory', payload: directory.children });
@@ -12,7 +12,7 @@ function Folder({ directory })
 
     return (
         <div className='folder' title={ directory.name } onClick={ () => changeActiveDirectory( directory ) }>
-                <span className='logo'> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> } </span>
+                <span className='logo'> <img src={ getFileLogo } /> </span>
                 <span className='name'> { directory.name } </span>
         </div>
     )

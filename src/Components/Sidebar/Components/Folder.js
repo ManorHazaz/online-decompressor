@@ -1,16 +1,17 @@
 import { useState } from 'react';
 
 import store from '../../../Redux/store';
+import useGetIcon from '../../../Hooks/useGetIcon';
 
-import File from './File'
+import File from './File';
 
-import folderLogo from '../../../Static/folder.svg';
-import zipLogo from '../../../Static/zip.svg';
 import arrowLogo from '../../../Static/css/arrow-down.svg';
 
 function Folder({ directory }) 
 {
     const [ showFolder, setShowFolder ] = useState( false );
+    
+    const getFileLogo  = useGetIcon( directory.type );
 
     function toggleFolder() 
     {
@@ -26,7 +27,7 @@ function Folder({ directory })
         <div className={`folder ${ showFolder ? 'open' :'' }`} title={ directory.name } >
             <div className='info' >
                 <span className='arrow' onClick={ () => toggleFolder() }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
-                <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> }</span>
+                <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> <img src={ getFileLogo } /> </span>
                 <span className='name' onClick={ () => changeActiveDirectory( directory ) } > { directory.name } </span>
             </div>
             
