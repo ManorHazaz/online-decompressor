@@ -9,7 +9,8 @@ function __( selector )
 }
 
 const zip = new JSZip();
-const regex = RegExp('[^.]*$');
+const regexAfterDot = RegExp('[^.]*$');
+const regexBeforeDot = RegExp('.*(?=\.)');
 
 function findFolder( currentFolder, folderName )
 {
@@ -29,7 +30,7 @@ function findFolder( currentFolder, folderName )
 function decompressFileToArray( file )
 {	
 	const dir = [
-		{ name: file.name, type: 'folder', children: [] }
+		{ name: regexBeforeDot.exec(file.name)[0], type: 'zip', children: [] }
 	];
 
 	JSZip.loadAsync( file )
@@ -71,7 +72,7 @@ function decompressFileToArray( file )
 					if( e === words[ words.length - 1 ] )
 					{
 						// last substring of name
-						const file = { name: words[words.length-1], type: regex.exec(e)[0], content: value };
+						const file = { name: words[words.length-1], type: regexAfterDot.exec(e)[0], content: value };
 						currentFolder.children.push( file );
 					}
 					else

@@ -5,6 +5,7 @@ import store from '../../../Redux/store';
 import File from './File'
 
 import folderLogo from '../../../Static/folder.svg';
+import zipLogo from '../../../Static/zip.svg';
 import arrowLogo from '../../../Static/css/arrow-down.svg';
 
 function Folder({ directory }) 
@@ -25,7 +26,7 @@ function Folder({ directory })
         <div className='folder'>
             <div className='info' >
                 <span className='arrow' onClick={ () => toggleFolder() }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
-                <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> <img src={ folderLogo } /> </span>
+                <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> }</span>
                 <span className='name' onClick={ () => changeActiveDirectory( directory ) } > { directory.name } </span>
             </div>
             { 

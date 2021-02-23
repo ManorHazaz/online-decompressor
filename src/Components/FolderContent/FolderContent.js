@@ -16,7 +16,7 @@ function FolderContent()
 				
 				&& activeDirectory.map(( file ) =>
 				(
-					file.type === 'folder'
+					file.type === 'folder' || file.type === 'zip'
 					? <Folder key={ file.type + '-' + file.name } directory={ file } />
 					: <File key={ file.type + '-' + file.name } file={ file } />
 				))
