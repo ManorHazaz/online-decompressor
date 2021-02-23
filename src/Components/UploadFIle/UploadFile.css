@@ -1,0 +1,60 @@
+.upload-file
+{
+	text-align: center;
+}
+
+
+.drag-and-drop
+{
+    position: relative;
+}
+
+.drag-and-drop input
+{
+    padding: 25vmin;
+    background-color: var(--secondary-color);
+    text-align-last: center;
+}
+
+.drag-and-drop input:focus
+{
+    outline: none;
+}
+
+.drag-and-drop .status
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40vmin;
+    height: 40vmin;
+    background-image: url('../../Static/css/add.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(26%) sepia(2%) saturate(3912%) hue-rotate(156deg) brightness(103%) contrast(96%);
+
+    opacity: 0.4;
+}
+
+.drag-and-drop input:focus + .drag-and-drop .status
+{
+    background-color: brown;
+}
+
+
+.drag-and-drop input::-webkit-file-upload-button
+{
+    display: none;
+}
+
+.decompress
+{
+	display: block;
+	width: 50%;
+	margin: 3vmin auto;
+	padding: 2vmin;
+	border-radius: 2vmin;
+	border: none;
+}
