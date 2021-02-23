@@ -7,13 +7,15 @@
 .drag-and-drop
 {
     position: relative;
+    background-color: var(--primary-color);
 }
 
 .drag-and-drop input
 {
     padding: 25vmin;
-    background-color: var(--secondary-color);
+    background-color: transparent;
     text-align-last: center;
+    z-index: 999;
 }
 
 .drag-and-drop input:focus
@@ -29,32 +31,26 @@
     transform: translate(-50%, -50%);
     width: 40vmin;
     height: 40vmin;
-    background-image: url('../../Static/css/add.svg');
+    background-image: url('../../Static/css/cloud-computing.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: invert(26%) sepia(2%) saturate(3912%) hue-rotate(156deg) brightness(103%) contrast(96%);
-
-    opacity: 0.4;
+    filter: invert(98%) sepia(11%) saturate(725%) hue-rotate(170deg) brightness(95%) contrast(94%);
+    z-index: 1;
+    opacity: 0.2;
 }
-
-.drag-and-drop input:focus + .drag-and-drop .status
-{
-    background-color: brown;
-}
-
 
 .drag-and-drop input::-webkit-file-upload-button
 {
     display: none;
 }
 
+.drag-and-drop input::file-selector-button 
+{
+    display: none;
+}
+
 .decompress
 {
-	display: block;
-	width: 50%;
 	margin: 3vmin auto;
-	padding: 2vmin;
-	border-radius: 2vmin;
-	border: none;
 }

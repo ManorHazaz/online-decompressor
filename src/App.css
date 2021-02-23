@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 :root
 {
 	--primary-color: #394B55;
@@ -16,6 +18,13 @@ body
 	margin: 0;
 }
 
+h1
+{
+    color: var(--secondary-color);
+    font-size: 10vmin;
+    font-family: 'Poppins', sans-serif;
+}
+
 .App
 {
 	height: 100vh;
@@ -24,7 +33,7 @@ body
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: linear-gradient( 180deg, var(--primary-color),#000);
+    background: #1f272c;
 }
 
 .file-manager
@@ -66,6 +75,7 @@ body
     border-radius: 1vmin;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    font-size: 2vmin;
 }
 
 .btn:focus
