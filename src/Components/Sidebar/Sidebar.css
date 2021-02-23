@@ -36,7 +36,6 @@
 .sidebar .folder .info .logo img, .sidebar .file .logo img
 {
 	width: 100%;
-	filter: invert(26%) sepia(2%) saturate(3912%) hue-rotate(156deg) brightness(103%) contrast(96%);
 }
 
 .sidebar .folder .info .name, .sidebar .folder .info .arrow
