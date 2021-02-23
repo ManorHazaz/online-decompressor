@@ -1,19 +1,34 @@
 .folder-content
 {
-    width: 70%;
+	padding: 2vmin;
+    width: 78%;
+	height: 66vh;
 	display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 2vmin;
+    grid-gap: 4vmin;
+	background-color: var(--folder-content-bg-color);
+	overflow-y: auto;
 }
 
 .folder-content .folder, .folder-content .file
 {
-	width: 100%;
+	display: flex;
+    flex-direction: column;
+	height: 15vh;
 	align-items: center;
+	padding: 1vmin;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.folder-content .folder .logo, .folder-content .file .logo
+{
+	width: 10vmin
 }
 
 .folder-content .folder .logo img, .folder-content .file .logo img
 {
 	width: 100%;
 	align-items: center;
+	filter: invert(26%) sepia(2%) saturate(3912%) hue-rotate(156deg) brightness(103%) contrast(96%);
 }

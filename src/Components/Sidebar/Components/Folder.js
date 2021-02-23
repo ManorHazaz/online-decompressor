@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+import store from '../../../Redux/store';
 
 import File from './File'
 
-import folderLogo from '../../../Static/folder.svg'
+import folderLogo from '../../../Static/folder.svg';
+import arrowLogo from '../../../Static/css/arrow-down.svg';
 
 function Folder({ directory }) 
 {
@@ -12,12 +15,18 @@ function Folder({ directory })
     {
         setShowFolder( !showFolder );
     }
+
+    function changeActiveDirectory( directory ) 
+    {
+        store.dispatch({ type: 'setActiveDirectory', payload: directory.children });
+    }
+
     return (
         <div className='folder'>
-            <div className='info' onClick={ () => toggleFolder() }>
-                <span className='logo'> <img src={ folderLogo } /> </span>
-                <span className='name'> { directory.name } </span>
-                <span className='arrow' > { showFolder ? '▲' : '▼' } </span>
+            <div className='info' >
+                <span className='arrow' onClick={ () => toggleFolder() }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
+                <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> <img src={ folderLogo } /> </span>
+                <span className='name' onClick={ () => changeActiveDirectory( directory ) } > { directory.name } </span>
             </div>
             { 
                 showFolder &&

@@ -1,6 +1,9 @@
 :root
 {
-	--primary-color: #056162;
+	--primary-color: #394B55;
+    --secondary-color: #546C78;
+    --sidebar-bg-color: #E1E9EC;
+    --folder-content-bg-color: #F6F8F3;
 }
 html
 {
@@ -24,35 +27,48 @@ body
     background: linear-gradient( 180deg, var(--primary-color),#000);
 }
 
-.file-input-container
+.file-manager
 {
-	display: flex;
-    flex-direction: column;
-    width: 50%;
+	width: 90%;
+    height: 90vh;
+	background-color: #fff;
 	margin: 2vmin auto;
-    min-width: 300px;
-    height: 30vh;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-    border-radius: 1rem;
-    padding: 2rem;
-    text-align: center;
-    justify-content: center;
+	box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    border-radius: 1vmin;
+	overflow: hidden;
 }
 
 .container
 {
-	display: flex;
-	width: 90%;
-	background-color: #fff;
-	margin: 2vmin auto;
-	box-shadow: 0 0 10px rgb(0 0 0 / 30%);
-    border-radius: 1rem;
-    padding: 2rem;
-	overflow: auto;
+    display: flex;
 }
 
 .hidden
 {
 	display: none;
+}
+
+.folder .name, .file .name
+{
+    word-wrap: break-word;
+    width: 14vmin;
+    text-align: center;
+    font-size: 2.5vmin;
+}
+
+.btn
+{
+    background-color: var(--sidebar-bg-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    padding: 2vmin 5vmin;
+    border: none;
+    border-radius: 1vmin;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.btn:focus
+{
+    outline: none;
 }

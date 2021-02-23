@@ -1,6 +1,12 @@
 .sidebar
 {
-	width: 30%;
+	width: 20%;
+	background-color: var(--sidebar-bg-color);
+	min-height: 68vh;
+    max-height: 68vh;
+	padding: 2vmin 0;
+	color: var(--primary-color);
+	overflow: auto;
 }
 
 .sidebar .folder, .sidebar .file
@@ -18,17 +24,19 @@
 {
 	display: flex;
     align-items: center;
+	cursor: pointer;
 }
 
 .sidebar .folder .info .logo, .sidebar .file .logo
 {
-	width: 8%;
+	width: 4vmin;
 	display: inline-block;
 }
 
 .sidebar .folder .info .logo img, .sidebar .file .logo img
 {
 	width: 100%;
+	filter: invert(26%) sepia(2%) saturate(3912%) hue-rotate(156deg) brightness(103%) contrast(96%);
 }
 
 .sidebar .folder .info .name, .sidebar .folder .info .arrow
@@ -39,4 +47,22 @@
 .sidebar .folder .info .name, .sidebar .file .name
 {
 	margin: 0 1vmin;
+}
+
+.sidebar .folder .info .arrow
+{
+	padding-right: 1vmin;
+	width: 2vmin;
+}
+
+
+.sidebar .folder .info .arrow img
+{
+	width: 100%;
+	transition: 0.3s;
+}
+
+.sidebar .folder .info .arrow .rotate
+{
+	transform: rotate( -45deg );
 }
