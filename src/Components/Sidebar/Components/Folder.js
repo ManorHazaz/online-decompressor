@@ -29,15 +29,25 @@ function Folder({ directory })
                 <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> }</span>
                 <span className='name' onClick={ () => changeActiveDirectory( directory ) } > { directory.name } </span>
             </div>
-            { 
-                showFolder &&
-                directory.children.map(( file ) =>
-				(
-					file.type === 'folder'
-					? <Folder key={ file.type + '-' + file.name } directory={ file } />
-					: <File key={ file.type + '-' + file.name } file={ file } />
-				))
             
+            { 
+                showFolder
+                && 
+                directory.children.map(( file ) =>
+                (
+                    file.type === 'folder' || file.type === 'zip'
+                    ? <Folder key={ file.type + '-' + file.name } directory={ file } />
+                    : ''
+                ))
+            }
+            {
+                showFolder
+                && 
+                directory.children.map(( file ) =>
+                (
+                    file.type !== 'folder' && file.type !== 'zip'
+                    && <File key={ file.type + '-' + file.name } file={ file } />
+                ))
             }
         </div>
     )

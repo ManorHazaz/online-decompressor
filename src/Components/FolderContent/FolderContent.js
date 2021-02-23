@@ -14,11 +14,22 @@ function FolderContent()
 			{
 				activeDirectory.length != 0
 				
-				&& activeDirectory.map(( file ) =>
+				&& 
+				activeDirectory.map(( file ) =>
 				(
 					file.type === 'folder' || file.type === 'zip'
 					? <Folder key={ file.type + '-' + file.name } directory={ file } />
-					: <File key={ file.type + '-' + file.name } file={ file } />
+					: ''
+				))
+			}
+			{
+				activeDirectory.length != 0
+				&&
+				
+				activeDirectory.map(( file ) =>
+				(
+					file.type !== 'folder' && file.type !== 'zip'
+					&& <File key={ file.type + '-' + file.name } file={ file } />
 				))
 			}
 		</div>

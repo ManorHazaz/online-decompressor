@@ -10,12 +10,23 @@ function Sidebar() {
 
     return (
         <div className='sidebar'>
-            { 
+			{
+				directory.length != 0
+				&& 
 				directory.map(( file ) =>
 				(
 					file.type === 'folder' || file.type === 'zip'
 					? <Folder key={ file.type + '-' + file.name } directory={ file } />
-					: <File key={ file.type + '-' + file.name } file={ file } />
+					: ''
+				))
+			}
+			{
+				directory.length != 0
+				&&
+				directory.map(( file ) =>
+				(
+					file.type !== 'folder' && file.type !== 'zip'
+					&& <File key={ file.type + '-' + file.name } file={ file } />
 				))
 			}
             
