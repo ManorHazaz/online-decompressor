@@ -29,7 +29,7 @@ function findFolder( currentFolder, folderName )
 function decompressFileToArray( file )
 {	
 	const dir = [
-		{ name: 'zipName', type: 'folder', children: [] }
+		{ name: file.name, type: 'folder', children: [] }
 	];
 
 	JSZip.loadAsync( file )
