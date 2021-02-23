@@ -30,7 +30,7 @@ function findFolder( currentFolder, folderName )
 function decompressFileToArray( file )
 {	
 	const dir = [
-		{ name: regexBeforeDot.exec(file.name)[0], type: 'zip', children: [] }
+		{ name: file.name, type: 'zip', children: [] }
 	];
 
 	JSZip.loadAsync( file )
