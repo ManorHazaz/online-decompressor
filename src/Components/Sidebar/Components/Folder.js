@@ -23,7 +23,7 @@ function Folder({ directory })
     }
 
     return (
-        <div className='folder'>
+        <div className={`folder ${ showFolder ? 'open' :'' }`}>
             <div className='info' >
                 <span className='arrow' onClick={ () => toggleFolder() }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
                 <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> }</span>

@@ -27,11 +27,10 @@ function UploadFile() {
     return (
         <div className='upload-file'>
             <h1> Online Decompressor </h1>
-            <div className='drag-and-drop'>
-                <input type='file' id='zip-file' accept='.zip' ref={ inputRef }></input>
+            <div className='field'>
                 <span className='status' onClick={ imgClick }></span>
             </div>
-            <button className='decompress btn' onClick={ () => decompressFile() }> Decompress </button>
+            <p>only *.zip files are supported</p>
         </div>
     )
 }

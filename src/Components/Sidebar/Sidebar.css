@@ -1,14 +1,18 @@
 .sidebar
 {
 	width: 20%;
-	background-color: var(--sidebar-bg-color);
-	min-height: 68vh;
-    max-height: 68vh;
-	padding: 2vmin 0;
-	color: var(--primary-color);
-	overflow: auto;
+    background-color: var(--sidebar-bg-color);
+    min-height: 67vh;
+    max-height: 70vh;
+    color: var(--primary-color);
+    overflow: auto;
+    display: block;
 }
 
+.sidebar .folder:first-child
+{
+	padding: 2vmin;
+}
 .sidebar .folder, .sidebar .file
 {
 	padding-left: 2vmin;
@@ -16,15 +20,26 @@
 
 .sidebar .folder
 {
-	width: 100%;
+	width: 18vmin;
 	align-items: center;
+	padding-left: 2vmin;
+}
+
+.sidebar .folder .info
+{
+	cursor: pointer;
+}
+
+.sidebar .file
+{
+	padding-left: 5vmin;
 }
 
 .sidebar .folder .info, .sidebar .file
 {
 	display: flex;
     align-items: center;
-	cursor: pointer;
+	width: 22vmin;
 }
 
 .sidebar .folder .info .logo, .sidebar .file .logo
@@ -45,7 +60,19 @@
 
 .sidebar .folder .info .name, .sidebar .file .name
 {
-	margin: 0 1vmin;
+	margin-left: 1vmin;
+	width: 14vmin;
+	overflow-x: auto;
+	text-overflow: ellipsis;
+	text-align: initial;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+
+.sidebar .folder .info .name::-webkit-scrollbar , .sidebar .file .name::-webkit-scrollbar 
+{
+	display: none;
 }
 
 .sidebar .folder .info .arrow
