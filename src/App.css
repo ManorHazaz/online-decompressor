@@ -2,6 +2,7 @@
 
 :root
 {
+    --dark-color: #1f272c;
 	--primary-color: #394B55;
     --secondary-color: #546C78;
     --sidebar-bg-color: #E1E9EC;
@@ -34,7 +35,7 @@ h1
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #1f272c;
+    background: var(--dark-color);
 }
 
 .file-manager

@@ -11,6 +11,8 @@ import fileDoc from '../Static/doc.svg';
 import filePdf from '../Static/pdf.svg';
 import fileZip from '../Static/zip.svg';
 import fileFolder from '../Static/folder.svg';
+import fileDownload from '../Static/download.svg';
+import filePreview from '../Static/eye.svg';
 
 // custom hook - import logos and display by type
 function useGetIcon( type )
@@ -54,6 +56,12 @@ function useGetIcon( type )
         
         case 'folder':
             return fileFolder;
+        
+        case 'download':
+            return fileDownload;
+        
+        case 'preview':
+            return filePreview;
         
         default:
             return fileDefault;

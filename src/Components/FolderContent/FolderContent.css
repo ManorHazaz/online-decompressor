@@ -14,10 +14,13 @@
 	display: flex;
     flex-direction: column;
 	width: 13vmin;
+	max-height: 18vmin;
 	align-items: center;
-	padding: 2vmin;
+	padding: 1vmin;
+	margin: 1vmin;
 	overflow: hidden;
 	overflow-wrap: break-word;
+	border-radius: 1vmin;
 	cursor: pointer;
 }
 
@@ -36,4 +39,36 @@
 {
 	width: 100%;
 	align-items: center;
+}
+
+/* file options */
+
+.folder-content .file
+{
+	position: relative;
+}
+
+.folder-content .file .file-options
+{
+	display: none;
+	justify-content: center;
+    align-items: center;
+	position: absolute;
+	inset: 0;
+	background-color: var(--primary-color);
+	opacity: 0.9;
+	flex-direction: column;
+}
+
+.folder-content .file .file-options img
+{
+	width: 6vmin;
+	cursor: pointer;
+    filter: invert(100%) sepia(12%) saturate(2158%) hue-rotate( 166deg ) brightness(95%) contrast(95%);
+	margin: 0.5vmin;
+}
+
+.folder-content .file:hover .file-options
+{
+	display: flex;
 }
