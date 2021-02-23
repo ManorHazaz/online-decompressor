@@ -62,17 +62,7 @@
 {
 	margin-left: 1vmin;
 	width: 14vmin;
-	overflow-x: auto;
-	text-overflow: ellipsis;
 	text-align: initial;
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-}
-
-
-.sidebar .folder .info .name::-webkit-scrollbar , .sidebar .file .name::-webkit-scrollbar 
-{
-	display: none;
 }
 
 .sidebar .folder .info .arrow
@@ -86,6 +76,7 @@
 {
 	width: 100%;
 	transition: 0.3s;
+	transform: rotate( -90deg );
 }
 
 .sidebar .folder .info .arrow .rotate
