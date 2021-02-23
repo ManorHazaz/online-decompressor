@@ -9,8 +9,10 @@ function UploadFile() {
     
 	function decompressFile() 
 	{
+        const regexAfterDot = RegExp('[^.]*$');
 		const file = inputRef.current.files[0];
-        if( file === undefined )
+
+        if( file === undefined || regexAfterDot.exec(file.name)[0] != 'zip')
         {
             return;
         }
@@ -28,6 +30,7 @@ function UploadFile() {
         <div className='upload-file'>
             <h1> Online Decompressor </h1>
             <div className='field'>
+                <input type='file' id='zip-file' accept='.zip' ref={ inputRef } onChange={ decompressFile }></input>
                 <span className='status' onClick={ imgClick }></span>
             </div>
             <p>only *.zip files are supported</p>
