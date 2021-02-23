@@ -19,6 +19,7 @@ export default function reducer( state = initialState , action )
             {
                 state.pastActiveDirectory.push( state.activeDirectory );
             }
+            state.futureActiveDirectory = [];
             return { ...state, activeDirectory: action.payload }
         }
 
