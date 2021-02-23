@@ -60,7 +60,7 @@ function File({ file })
     }
 
     return (
-        <div className='file' >
+        <div className='file' title={ file.name } >
             <span className='logo'> <img src={ getFileLogo( file.type ) } /> </span>
             <span className='name'> { file.name } </span>
         </div>

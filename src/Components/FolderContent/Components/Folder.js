@@ -11,7 +11,7 @@ function Folder({ directory })
     }
 
     return (
-        <div className='folder' onClick={ () => changeActiveDirectory( directory ) }>
+        <div className='folder' title={ directory.name } onClick={ () => changeActiveDirectory( directory ) }>
                 <span className='logo'> { directory.type === 'folder' ? <img src={ folderLogo } />: <img src={ zipLogo } /> } </span>
                 <span className='name'> { directory.name } </span>
         </div>

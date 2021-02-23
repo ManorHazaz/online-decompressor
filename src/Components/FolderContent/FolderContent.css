@@ -17,12 +17,19 @@
 	align-items: center;
 	padding: 2vmin;
 	overflow: hidden;
+	overflow-wrap: break-word;
 	cursor: pointer;
 }
 
 .folder-content .folder .logo, .folder-content .file .logo
 {
 	width: 10vmin
+}
+
+.folder-content .folder .name, .folder-content .file .name
+{
+	max-height: 9vmin;
+    overflow: hidden;
 }
 
 .folder-content .folder .logo img, .folder-content .file .logo img
