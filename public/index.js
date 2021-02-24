@@ -144,3 +144,16 @@ async function fileToText( file )
 	const blob = new Blob([byteArray], { type: 'application/octet-stream' });
 	return await blob.text();
 }
+
+function fileToImage( file, appendTo ) 
+{
+	const fileArray =  file.content;
+	const type = 'image/'+ file.type ;
+
+	var blob = new Blob([ fileArray ], {'type': type});
+	var url = URL.createObjectURL(blob);
+	var image = document.createElement('img');
+    image.src = url;
+
+	_( appendTo ).appendChild(image)
+}
