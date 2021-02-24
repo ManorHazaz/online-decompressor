@@ -36,8 +36,37 @@ function decompressFileToArray( file )
 	JSZip.loadAsync( file )
 	.then(( zip ) => 
 	{
-		// go over all the files in the zip
-		for (const [key, value] of Object.entries(zip.files)) 
+		var entries = Object.keys(zip.files).map(function (name) 
+		{
+			return zip.files[name];
+		});
+
+		var listOfPromises = entries.map(function(entry) 
+		{
+			return entry.async("uint8array").then(function (u8) 
+			{
+				// we bind the two together to be able to match the name and the content in the last step
+				return [entry.name, u8];
+			});
+		});
+		  
+		  // 3.
+		var promiseOfList = Promise.all(listOfPromises);
+		  
+		  // 4.
+		promiseOfList.then(function (list) 
+		{
+			// here, list is a list of [name, content]
+			// let's transform it into an object for easy access
+			const result = list.reduce(function (accumulator, current) 
+			{
+				var currentName = current[0];
+				var currentValue = current[1];
+				accumulator[currentName] = currentValue;
+				return accumulator;
+			}, {} /* initial value */);
+
+			for (const [key, value] of Object.entries(  result )) 
 		{
 			// split name of file to find folders
 			const words = key.split('/');
@@ -51,7 +80,7 @@ function decompressFileToArray( file )
 				{
 					return;
 				}
-				if( value.dir )
+					if( value.length === 0 )
 				{
 					// file type is folder
 					if( findFolder( currentFolder.children, e ) !== false )
@@ -83,15 +112,16 @@ function decompressFileToArray( file )
 				}
 			});
 		}
+			
+		});
 	})
-
 	return dir;
 };
 
+// 
 function createDownloadLink( file, appendTo )
 {
-	const fileArray =  file.content._data.compressedContent;
-	console.log( fileArray )
+	const fileArray =  file.content;
 	var byteArray = new Uint8Array( fileArray );
 	var a = window.document.createElement('a');
 
