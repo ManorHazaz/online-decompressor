@@ -67,51 +67,51 @@ function decompressFileToArray( file )
 			}, {} /* initial value */);
 
 			for (const [key, value] of Object.entries(  result )) 
-		{
-			// split name of file to find folders
-			const words = key.split('/');
-
-			// reset folder array helper
-			let currentFolder = dir[0];
-
-			words.forEach( ( e ) => 
 			{
-				if( e === '' )
+				// split name of file to find folders
+				const words = key.split('/');
+
+				// reset folder array helper
+				let currentFolder = dir[0];
+
+				words.forEach( ( e ) => 
 				{
-					return;
-				}
+					if( e === '' )
+					{
+						return;
+					}
 					if( value.length === 0 )
-				{
-					// file type is folder
-					if( findFolder( currentFolder.children, e ) !== false )
 					{
-						// get inside folder
-						currentFolder = findFolder( currentFolder.children, e );
+						// file type is folder
+						if( findFolder( currentFolder.children, e ) !== false )
+						{
+							// get inside folder
+							currentFolder = findFolder( currentFolder.children, e );
+						}
+						else
+						{
+							// create folder
+							const newFolder = { name: e, type: 'folder', children: [] }
+							currentFolder.children.push( newFolder );
+						}
 					}
 					else
 					{
-						// create folder
-						const newFolder = { name: e, type: 'folder', children: [] }
-						currentFolder.children.push( newFolder );
+						// file type is not folder
+						if( e === words[ words.length - 1 ] )
+						{
+							// last substring of name
+							const file = { name: words[words.length-1], type: regexAfterDot.exec(e)[0], content: value };
+							currentFolder.children.push( file );
+						}
+						else
+						{
+							// folder name
+							currentFolder = findFolder( currentFolder.children, e );
+						}
 					}
-				}
-				else
-				{
-					// file type is not folder
-					if( e === words[ words.length - 1 ] )
-					{
-						// last substring of name
-						const file = { name: words[words.length-1], type: regexAfterDot.exec(e)[0], content: value };
-						currentFolder.children.push( file );
-					}
-					else
-					{
-						// folder name
-						currentFolder = findFolder( currentFolder.children, e );
-					}
-				}
-			});
-		}
+				});
+			}
 			
 		});
 	})
@@ -132,7 +132,15 @@ function createDownloadLink( file, appendTo )
 	_( appendTo ).appendChild(a)
 	a.click();
 
-
 	// // Remove anchor from body
 	_( appendTo ).removeChild(a)
+}
+
+async function fileToText( file ) 
+{
+	const fileArray =  file.content;
+	const byteArray = new Uint8Array( fileArray );
+
+	const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+	return await blob.text();
 }
