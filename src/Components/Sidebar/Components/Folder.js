@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import store from '../../../Redux/store';
-import useGetIcon from '../../../Hooks/useGetIcon';
+import useIcons from '../../../Hooks/useIcons';
 
 import File from './File';
 
@@ -11,7 +11,7 @@ function Folder({ directory })
 {
     const [ showFolder, setShowFolder ] = useState( false );
     
-    const getFileLogo  = useGetIcon( directory.type );
+    const getFileLogo  = useIcons( directory.type );
 
     function toggleFolder() 
     {

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-import useGetIcon from '../../../Hooks/useGetIcon';
+import useIcons from '../../../Hooks/useIcons';
 import Modal from '../../Modal/Modal';
 
 function File({ file }) 
 {
     const [ modalIsOpen, setModalIsOpen ] = useState( false );
     const typesSupport = [ 'js', 'css', 'html', 'txt', 'scss', 'md', 'yml', 'png', 'jpg', 'json', 'lock', 'gitignore' ];
-    const getFileLogo  = useGetIcon( file.type );
-    const imgDownload  = useGetIcon( 'download' );
-    const imgPreview  = useGetIcon( 'preview' );
+    const getFileLogo  = useIcons( file.type );
+    const imgDownload  = useIcons( 'download' );
+    const imgPreview  = useIcons( 'preview' );
 
     // Open and close modal
 	function toggleModel() 

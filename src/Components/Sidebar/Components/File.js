@@ -1,10 +1,10 @@
 import React from 'react';
 
-import useGetIcon from '../../../Hooks/useGetIcon';
+import useIcons from '../../../Hooks/useIcons';
 
 function File({ file }) 
 {
-    const getFileLogo  = useGetIcon( file.type );
+    const getFileLogo  = useIcons( file.type );
 
     return (
         <div className='file' title={ file.name } >

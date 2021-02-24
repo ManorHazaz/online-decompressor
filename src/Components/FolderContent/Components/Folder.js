@@ -1,9 +1,9 @@
 import store from '../../../Redux/store';
-import useGetIcon from '../../../Hooks/useGetIcon';
+import useIcons from '../../../Hooks/useIcons';
 
 function Folder({ directory }) 
 {
-    const getFileLogo  = useGetIcon( directory.type );
+    const getFileLogo  = useIcons( directory.type );
 
     function changeActiveDirectory( directory ) 
     {
