@@ -10,7 +10,7 @@
     max-height: 1000px;
 	background-color: #ffffff;
 	z-index: 999;
-	border-radius: 2rem;
+	border-radius: 1vmin;
     opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-timing-function: linear;
@@ -29,16 +29,46 @@
 
 .modal .exit-modal
 {
-	display: block;
+	display: inline-block;
 	background: none;
 	border: none;
     font-size: 1.7rem;
     margin: 0.8rem;
+	margin-bottom: 0;
 }
 
 .modal .exit-modal:focus
 {
 	outline: none;
+}
+
+.modal h3
+{
+	margin-top: 0;
+    text-align: center;
+}
+
+.modal .image-container
+{
+	display: flex;
+    justify-content: center;
+	width: 100%;
+}
+
+.modal .image-container img
+{
+	width: 105vmin;
+    max-width: 100%;
+}
+
+.CodeMirror 
+{
+    height: 73vmin !important;
+}
+.CodeMirror-scroll 
+{
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 @keyframes fadeInOpacity {

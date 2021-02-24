@@ -5,7 +5,8 @@ import Modal from '../../Modal/Modal';
 
 function File({ file }) 
 {
-    const [ modalIsOpen, setModalIsOpen ] = useState( false )
+    const [ modalIsOpen, setModalIsOpen ] = useState( false );
+    const typesSupport = [ 'js', 'css', 'html', 'txt', 'scss', 'md', 'yml', 'png', 'jpg', 'json', 'lock', 'gitignore' ];
     const getFileLogo  = useGetIcon( file.type );
     const imgDownload  = useGetIcon( 'download' );
     const imgPreview  = useGetIcon( 'preview' );
@@ -23,8 +24,13 @@ function File({ file })
             <span className='name'> { file.name } </span>
             <div className='file-options'>
                 <img src={ imgDownload } onClick={ () => window.createDownloadLink( file, '.link') } />
-                <img src={ imgPreview } onClick={() => toggleModel() } />
-                <Modal modalIsOpen={ modalIsOpen } toggleModel={ toggleModel } />
+                {
+                    typesSupport.includes( file.type ) &&
+                    <img src={ imgPreview } onClick={() => toggleModel() } />
+                }
+                {
+                    modalIsOpen && <Modal toggleModel={ toggleModel } file={ file } />
+                }
             </div>
         </div>
 
