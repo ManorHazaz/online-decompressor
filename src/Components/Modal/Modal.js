@@ -37,7 +37,7 @@ function Modal({ toggleModel, file })
 
     return ReactDOM.createPortal(
         <>
-            <div className='overlay'></div>
+            <div className='overlay' onClick={ toggleModel }></div>
             <div className='modal' >
                 <button className='exit-modal' onClick={ toggleModel }> X </button>
                 <h3> { file.name } </h3>
