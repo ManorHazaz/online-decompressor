@@ -59,6 +59,7 @@
 	background-color: var(--primary-color);
 	opacity: 0.9;
 	flex-direction: column;
+	transition: 0.3s;
 }
 
 .folder-content .file .file-options img

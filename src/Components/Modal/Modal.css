@@ -60,14 +60,15 @@
 {
 	display: flex;
     justify-content: center;
-    width: 70%;
+	max-width: 80%;
+    max-height: 80%;
     margin: 0 auto;
 }
 
 .modal .image-container img
 {
-	width: 70vmin;
-    object-fit: contain;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .CodeMirror 

@@ -13,6 +13,19 @@
     margin-left: 5vmin;
 }
 
+.header .btn
+{
+    background-color: #0095e6;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.header .btn:hover
+{
+    background-color: #1b74a3;
+}
+
+
 .header .nav img
 {
     padding: 1.5vmin;

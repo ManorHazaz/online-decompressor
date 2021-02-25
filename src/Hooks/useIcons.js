@@ -1,4 +1,5 @@
 import fileText from '../Static/txt.svg';
+import filePhp from '../Static/php.svg';
 import fileJpg from '../Static/jpg.svg';
 import filePng from '../Static/png.svg';
 import fileCss from '../Static/css.svg';
@@ -21,6 +22,9 @@ function useIcons( type )
     switch ( type ) {
         case 'txt':
             return fileText;
+
+        case 'php':
+            return filePhp;
         
         case 'png':
             return filePng;
