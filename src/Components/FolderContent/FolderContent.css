@@ -4,6 +4,7 @@
     width: 78%;
 	height: 66vh;
 	display: flex;
+	align-content: start;
     flex-wrap: wrap;
 	background-color: var(--folder-content-bg-color);
 	overflow-y: auto;
