@@ -10,6 +10,9 @@ function useCodeLanguage( type )
         case 'html':
             return 'xml';
 
+        case 'php':
+            return 'javascript';
+
         case 'js':
             return 'javascript';
 

@@ -6,7 +6,7 @@ import Modal from '../../Modal/Modal';
 function File({ file }) 
 {
     const [ modalIsOpen, setModalIsOpen ] = useState( false );
-    const typesSupport = [ 'js', 'css', 'html', 'txt', 'scss', 'md', 'yml', 'png', 'jpg', 'json', 'lock', 'gitignore' ];
+    const typesSupport = [ 'js', 'css', 'html', 'txt', 'scss', 'md', 'yml', 'png', 'jpg', 'json', 'lock', 'gitignore', 'php' ];
     const getFileLogo  = useIcons( file.type );
     const imgDownload  = useIcons( 'download' );
     const imgPreview  = useIcons( 'preview' );
