@@ -12,6 +12,7 @@ const zip = new JSZip();
 const regexAfterDot = RegExp('[^.]*$');
 const regexBeforeDot = RegExp('.*(?=\.)');
 
+// check if folder exist in array
 function findFolder( currentFolder, folderName )
 {
 	let folder = false
@@ -20,13 +21,14 @@ function findFolder( currentFolder, folderName )
 	{
 		if( e.name === folderName )
 		{
-			folder = currentFolder[counter]
+			folder = currentFolder[ counter ]
 		}
 		counter++;
 	});
 	return folder;
 }
 
+// decompress file and arange in array
 function decompressFileToArray( file )
 {	
 	const dir = [
@@ -36,37 +38,34 @@ function decompressFileToArray( file )
 	JSZip.loadAsync( file )
 	.then(( zip ) => 
 	{
-		var entries = Object.keys(zip.files).map(function (name) 
+		const entries = Object.keys( zip.files ).map(( name ) => 
 		{
-			return zip.files[name];
+			return zip.files[ name ];
 		});
 
-		var listOfPromises = entries.map(function(entry) 
+		const listOfPromises = entries.map(( entry ) => 
 		{
-			return entry.async("uint8array").then(function (u8) 
+			return entry.async( "uint8array" ).then(( u8 ) => 
 			{
-				// we bind the two together to be able to match the name and the content in the last step
-				return [entry.name, u8];
+				// bind the two together to be able to match the name and the content in the last step
+				return [ entry.name, u8 ];
 			});
 		});
 		  
-		  // 3.
-		var promiseOfList = Promise.all(listOfPromises);
+		const promiseOfList = Promise.all( listOfPromises );
 		  
-		  // 4.
-		promiseOfList.then(function (list) 
+		promiseOfList.then(( list ) =>
 		{
-			// here, list is a list of [name, content]
-			// let's transform it into an object for easy access
-			const result = list.reduce(function (accumulator, current) 
+			// transform it into an object for easy access
+			const result = list.reduce( ( accumulator, current ) => 
 			{
-				var currentName = current[0];
-				var currentValue = current[1];
-				accumulator[currentName] = currentValue;
+				const currentName = current[0];
+				const currentValue = current[1];
+				accumulator[ currentName ] = currentValue;
 				return accumulator;
-			}, {} /* initial value */);
+			}, {});
 
-			for (const [key, value] of Object.entries(  result )) 
+			for (const [ key, value ] of Object.entries(  result )) 
 			{
 				// split name of file to find folders
 				const words = key.split('/');
@@ -101,7 +100,7 @@ function decompressFileToArray( file )
 						if( e === words[ words.length - 1 ] )
 						{
 							// last substring of name
-							const file = { name: words[words.length-1], type: regexAfterDot.exec(e)[0], content: value };
+							const file = { name: words[ words.length-1 ], type: regexAfterDot.exec( e )[0], content: value };
 							currentFolder.children.push( file );
 						}
 						else
@@ -115,45 +114,49 @@ function decompressFileToArray( file )
 			
 		});
 	})
+	
 	return dir;
 };
 
-// 
+// get file and download
 function createDownloadLink( file, appendTo )
 {
 	const fileArray =  file.content;
-	var byteArray = new Uint8Array( fileArray );
-	var a = window.document.createElement('a');
+	const byteArray = new Uint8Array( fileArray );
+	const a = window.document.createElement( 'a' );
 
-	a.href = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));
+	a.href = window.URL.createObjectURL( new Blob([ byteArray ], { type: 'application/octet-stream' }));
 	a.download = file.name;
 
-	// Append anchor to body.
-	_( appendTo ).appendChild(a)
+	// Append to html.
+	_( appendTo ).appendChild( a )
+
 	a.click();
 
-	// // Remove anchor from body
-	_( appendTo ).removeChild(a)
+	// // Remove from html
+	_( appendTo ).removeChild( a )
 }
 
+// get file and return - promise
 async function fileToText( file ) 
 {
 	const fileArray =  file.content;
 	const byteArray = new Uint8Array( fileArray );
 
-	const blob = new Blob([byteArray], { type: 'application/octet-stream' });
+	const blob = new Blob([ byteArray ], { type: 'application/octet-stream' });
 	return await blob.text();
 }
 
+// get file ( image type ) and inject img to the html
 function fileToImage( file, appendTo ) 
 {
 	const fileArray =  file.content;
 	const type = 'image/'+ file.type ;
 
-	var blob = new Blob([ fileArray ], {'type': type});
-	var url = URL.createObjectURL(blob);
-	var image = document.createElement('img');
+	const blob = new Blob([ fileArray ], { 'type': type });
+	const url = URL.createObjectURL( blob );
+	const image = document.createElement( 'img' );
     image.src = url;
 
-	_( appendTo ).appendChild(image)
+	_( appendTo ).appendChild( image )
 }

@@ -1,11 +1,12 @@
-import './Sidebar.css'
+import './Sidebar.css';
 
 import Folder from './Components/Folder';
 import File from './Components/File';
 
 import { useSelector } from 'react-redux';
 
-function Sidebar() {
+function Sidebar()
+{
     const directory =  useSelector( state => state.directory );
 
     return (
@@ -34,4 +35,4 @@ function Sidebar() {
     )
 }
 
-export default Sidebar
+export default Sidebar;

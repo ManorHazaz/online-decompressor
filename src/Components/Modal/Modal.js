@@ -1,10 +1,10 @@
-import ReactDOM from 'react-dom';
-import { useState, useEffect } from 'react';
-
 import './Modal.css';
-
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+
+import { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+
 import { Controlled as ControlledEditor } from 'react-codemirror2';
 
 import useCodeLanguage from '../../Hooks/useCodeLanguage';
@@ -15,9 +15,10 @@ function Modal({ toggleModel, file })
     const codeLanguage = useCodeLanguage( file.type );
     const isImage = isFileImage( file.type );
 
+    // check if file type is image
     function isFileImage( type ) 
     {
-        const imageTypes = [ 'png', 'jpg', 'jpeg', 'gif'];
+        const imageTypes = [ 'png', 'jpg', 'jpeg' ];
         return imageTypes.includes( type );
     }
 
@@ -25,7 +26,6 @@ function Modal({ toggleModel, file })
     {
         if( isImage )
         {
-            console.log( 'isimage' )
             window.fileToImage( file, '.image-container' );
         }
         else
@@ -41,24 +41,25 @@ function Modal({ toggleModel, file })
             <div className='modal' >
                 <button className='exit-modal' onClick={ toggleModel }> X </button>
                 <h3> { file.name } </h3>
-                { !isImage
-                ?<ControlledEditor
-                    value={ value }
-                    className="code-mirror-wrapper"
-                    options=
-                    {{
-                        lineWrapping: true,
-                        lint: true,
-                        mode: codeLanguage,
-                        theme: 'material',
-                        lineNumbers: true
-                    }}
-                />
-                :<div className='image-container'></div>
+                { 
+                    !isImage
+                    ?<ControlledEditor
+                        value={ value }
+                        className="code-mirror-wrapper"
+                        options=
+                        {{
+                            lineWrapping: true,
+                            lint: true,
+                            mode: codeLanguage,
+                            theme: 'material',
+                            lineNumbers: true
+                        }}
+                    />
+                    :<div className='image-container'></div>
                 }
             </div>
         </>,
-        document.getElementById('modal-root')
+        document.getElementById( 'modal-root' )
     )
 }
 

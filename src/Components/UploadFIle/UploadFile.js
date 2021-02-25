@@ -1,18 +1,19 @@
-import './UploadFile.css'
+import './UploadFile.css';
 
+import { useRef } from 'react';
 import store from '../../Redux/store';
-import { Children, useRef } from 'react';
 
-function UploadFile() {
-
+function UploadFile() 
+{
     const inputRef = useRef();
     
+    // Check file type and decompress
 	function decompressFile() 
 	{
         const regexAfterDot = RegExp('[^.]*$');
 		const file = inputRef.current.files[0];
 
-        if( file === undefined || regexAfterDot.exec(file.name)[0] != 'zip')
+        if( file === undefined || regexAfterDot.exec( file.name )[0] != 'zip')
         {
             return;
         }
@@ -38,4 +39,4 @@ function UploadFile() {
     )
 }
 
-export default UploadFile
+export default UploadFile;

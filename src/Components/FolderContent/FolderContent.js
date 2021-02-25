@@ -12,8 +12,8 @@ function FolderContent()
     return (
 		<div className='folder-content'>
 			{
+				// first show folders
 				activeDirectory.length != 0
-				
 				&& 
 				activeDirectory.map(( file ) =>
 				(
@@ -23,9 +23,9 @@ function FolderContent()
 				))
 			}
 			{
+				// then show files
 				activeDirectory.length != 0
 				&&
-				
 				activeDirectory.map(( file ) =>
 				(
 					file.type !== 'folder' && file.type !== 'zip'
@@ -36,4 +36,4 @@ function FolderContent()
     )
 }
 
-export default FolderContent
+export default FolderContent;

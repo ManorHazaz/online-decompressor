@@ -1,9 +1,9 @@
+import File from './File';
+
 import { useState } from 'react';
 
 import store from '../../../Redux/store';
 import useIcons from '../../../Hooks/useIcons';
-
-import File from './File';
 
 import arrowLogo from '../../../Static/css/arrow-down.svg';
 
@@ -26,12 +26,13 @@ function Folder({ directory })
     return (
         <div className={`folder ${ showFolder ? 'open' :'' }`} title={ directory.name } >
             <div className='info' >
-                <span className='arrow' onClick={ () => toggleFolder() }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
+                <span className='arrow' onClick={ toggleFolder }> { showFolder ? <img className='rotate' src={ arrowLogo } /> : <img src={ arrowLogo } /> } </span>
                 <span className='logo' onClick={ () => changeActiveDirectory( directory ) }> <img src={ getFileLogo } /> </span>
                 <span className='name' onClick={ () => changeActiveDirectory( directory ) } > { directory.name } </span>
             </div>
             
             { 
+                // first show folders
                 showFolder
                 && 
                 directory.children.map(( file ) =>
@@ -42,6 +43,7 @@ function Folder({ directory })
                 ))
             }
             {
+                // then show files
                 showFolder
                 && 
                 directory.children.map(( file ) =>
@@ -54,4 +56,4 @@ function Folder({ directory })
     )
 }
 
-export default Folder
+export default Folder;

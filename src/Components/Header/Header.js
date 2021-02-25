@@ -1,16 +1,12 @@
 import './Header.css';
 
-import arrowLogo from '../../Static/css/nav-arrow.svg';
-
 import store from '../../Redux/store';
+import { useSelector } from 'react-redux';
 
-import { useSelector, connect } from 'react-redux';
-
-import { useEffect } from 'react';
+import arrowLogo from '../../Static/css/nav-arrow.svg';
 
 function Header() 
 {
-
     const pastActiveDirectory = useSelector( state => state.pastActiveDirectory );
     const futureActiveDirectory = useSelector( state => state.futureActiveDirectory );
 
@@ -40,10 +36,10 @@ function Header()
     return (
         <div className='header'>
             <div className='nav'>
-                <img className='left-arrow active' src={ arrowLogo } onClick={ () => handleUndo() } />
-                <img className='right-arrow active' src={ arrowLogo } onClick={ () => handleRedo() } />
+                <img className='left-arrow active' src={ arrowLogo } onClick={ handleUndo } />
+                <img className='right-arrow active' src={ arrowLogo } onClick={ handleRedo } />
             </div>
-            <button className='btn new-file' onClick={ () => handleNewFile() } > Decompress New File </button>
+            <button className='btn new-file' onClick={ handleNewFile } > Decompress New File </button>
         </div>
     )
 }
