@@ -1,3 +1,7 @@
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/sass/sass'
 
 // custom hook - arrange code language by file type
 function useCodeLanguage( type )
