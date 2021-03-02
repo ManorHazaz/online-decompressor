@@ -1,20 +1,21 @@
 import './UploadFile.css';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import store from '../../Redux/store';
 
 function UploadFile() 
 {
     const inputRef = useRef();
+    const [ canUpload, setCanUpload ] = useState( true );
     
     // Check file type and decompress
 	function decompressFile() 
 	{
         const regexAfterDot = RegExp('[^.]*$');
 		const file = inputRef.current.files[0];
-
-        if( file === undefined || regexAfterDot.exec( file.name )[0] != 'zip')
+        if( file === undefined || regexAfterDot.exec( file.name )[0] != 'zip' || file.size > 52428800 )
         {
+            setCanUpload( false );
             return;
         }
 		const dir = window.decompressFileToArray( file );
@@ -34,7 +35,7 @@ function UploadFile()
                 <input type='file' id='zip-file' accept='.zip' ref={ inputRef } onChange={ decompressFile }></input>
                 <span className='status' onClick={ imgClick }></span>
             </div>
-            <p>only *.zip files are supported</p>
+            <p className={ !canUpload ? 'alert' : '' }>Only *.zip files are supported || Max file size: 50mb</p>
         </div>
     )
 }
